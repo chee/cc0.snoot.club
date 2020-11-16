@@ -1,0 +1,4 @@
+website:
+  stage: deploy
+  script:
+    - update-snoot-site cc0
