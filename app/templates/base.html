@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% if collection %}
+	<title>{{collection.name}} — public dump</title>
+	<h1>{{collection.name}}</h1>
+{% elif title %}
+	<title>{{title}} — public dump</title>
+	<h1>{{title}}</h1>
+{% else %}
+	<title>public dump</title>
+	<h1>public dump</h1>
+{% endif %}
+{% if current_user.is_authenticated %}
+	<p class="hello">
+		hi, <span class="hello_name">{{current_user.legal_name}}</span>!
+	</p>
+{% endif %}
+<nav>
+	{% if current_user.is_authenticated %}
+		<a href="{{url_for('logout')}}">logout</a>
+	{% else %}
+		<a href="{{url_for('register')}}">register</a>
+		<a href="{{url_for('login')}}">login</a>
+	{% endif %}
+	{% block nav %}{% endblock %}
+</nav>
+{% with messages = get_flashed_messages() %}
+	{% if messages %}
+		{% for message in messages %}
+			<p class="message">{{ message }}</p>
+		{% endfor %}
+	{% endif %}
+{% endwith %}
+<p class="city-17">welcome to the <a href="/">public dump</a></p>
+<main>
+	{% block content %}{% endblock %}
+</main>

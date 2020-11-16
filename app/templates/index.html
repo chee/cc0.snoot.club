@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+	<h2>collections</h2>
+	<ul>
+		{% for collection in collections %}
+			<li>
+				<a href="{{collection.path}}">{{collection.name}}</a>
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock %}

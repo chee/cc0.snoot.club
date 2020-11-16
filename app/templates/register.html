@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+	{% if current_user.is_admin() %}
+		<form action="" method="POST" novalidate>
+			{{form.hidden_tag()}}
+			<p>
+				{{form.legal_name.label}}<br>
+				{{form.legal_name(size=32)}}
+			</p>
+			<p>
+				{{form.name.label}}<br>
+				{{form.name(size=32)}}
+			</p>
+
+			<p>
+				{{form.password.label}}<br>
+				{{form.password(size=32)}}
+			</p>
+
+			<p>
+				{{form.website.label}}<br>
+				{{form.website(size=32)}}
+			</p>
+
+			<p>
+				{{form.submit()}}
+			</p>
+		</form>
+	{% else %}
+		<p>
+			registrations are currently
+			<span style="font-weight: bold; color: green">
+				open
+			</span>!
+		<p>
+			email me: <a href="mailto:chee-cc0@snoot.club">chee-cc0@snoot.club</a>
+		</p>
+	{% endif %}
+{% endblock %}
