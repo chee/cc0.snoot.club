@@ -1,11 +1,8 @@
 <h3>
 	<a href="/{{piece.collection.copyright_holder.username}}/{{piece.collection.slug}}/{{piece.slug}}">{{piece.name}}</a>
 </h3>
-{{piece.description}}
 <a href="{{piece.url}}" download>download</a>
-{% autoescape false %}
-	{{piece.html}}
-{% endautoescape %}
+<p>{{piece.description}}</p>
 
 {% if piece.type.startswith("audio/") %}
 	<audio controls src="{{piece.url}}"></audio>
@@ -47,3 +44,4 @@
 	 about="{{collection.country}}">
 	 {{collection.country}}
    </span>.
+<hr>

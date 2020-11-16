@@ -193,3 +193,4 @@ flycheck_*.el
 
 .flaskenv
 app/app.db
+.env
