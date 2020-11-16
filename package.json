@@ -1,0 +1,12 @@
+{
+	"name": "cc0-application",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"build": "pip3 install -r requirements.txt",
+		"start": "flask run"
+	},
+	"author": "cc0 <cc0@snoot.club>",
+	"license": "CC-0",
+	"description": "cc0 application on snoot.club"
+}
