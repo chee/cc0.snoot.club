@@ -29,20 +29,20 @@ class CopyrightHolder(UserMixin, db.Model):
 
 class Collection(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	name = db.Column(db.String(128), index=True, unique=True)
+	name = db.Column(db.String(128), index=True)
 	description = db.Column(db.String(256))
 	slug = db.Column(db.String(128), index=True)
 	copyright_holder_id = db.Column(db.Integer, db.ForeignKey('copyright_holder.id'))
-	password_hash = db.Column(db.String(128))
 	pieces = db.relationship('Piece', backref='collection', lazy='dynamic')
 	def __repr__(self):
 		return f'<Collection {self.name}>'
 
 class Piece(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	name = db.Column(db.String(128), index=True, unique=True)
+	name = db.Column(db.String(128), index=True)
+	slug = db.Column(db.String(128), index=True)
 	description = db.Column(db.String(256))
-	url = db.Column(db.String(128))
+	url = db.Column(db.String(256))
 	timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
 	type = db.Column(db.String(10), index=True)
 	collection_id = db.Column(db.Integer, db.ForeignKey('collection.id'))

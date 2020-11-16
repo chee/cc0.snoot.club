@@ -4,7 +4,15 @@
 	<ul>
 		{% for collection in collections %}
 			<li>
-				<a href="{{collection.path}}">{{collection.name}}</a>
+				<span class="collection-holder">
+					{{collection.copyright_holder.legal_name}}</span>:
+				<a href="{{url_for('collection', username=collection.copyright_holder.username, slug=collection.slug)}}">
+					{{collection.name}}
+				</a>
+				 —
+				<span class="collection-description">
+					<q>{{collection.description}}</q>
+				</span>
 			</li>
 		{% endfor %}
 	</ul>

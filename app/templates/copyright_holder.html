@@ -1,21 +1,22 @@
 {% extends "base.html" %}
 {% block nav %}
-{% if current_user.is_authenticated and current_user.id == copyright_holder.id %}
-	<a href="{{url_for('new_collection', username=copyright_holder.username)}}">
-		new collection
-	</a>
-{% endif %}
+	{% if current_user.is_authenticated and current_user.id == copyright_holder.id %}
+		<a href="{{url_for('new_collection', username=copyright_holder.username)}}">
+			new collection
+		</a>
+	{% endif %}
 {% endblock %}
 {% block content %}
 	<h2>collections</h2>
-	{% for collection in copyright_holder.collections %}
-		<ul>
+	<ul>
+		{% for collection in copyright_holder.collections %}
+
 			<li>
 
-				<a href="{{url_for('collection', collection)}}">
+				<a href="{{url_for('collection', username=copyright_holder.username, slug=collection.slug)}}">
 					{{collection.name}}
 				</a> — <span class="collection-description">{{collection.description}}</span>
 			</li>
-		</ul>
-	{% endfor %}
+		{% endfor %}
+	</ul>
 {% endblock %}
