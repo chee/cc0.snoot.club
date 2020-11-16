@@ -1,4 +1,5 @@
-<h3>
+<article class="piece">
+    <h3>
 	<a href="/{{piece.collection.copyright_holder.username}}/{{piece.collection.slug}}/{{piece.slug}}">{{piece.name}}</a>
 </h3>
 <a href="{{piece.url}}" download>download</a>
@@ -27,10 +28,9 @@
    <br />
    To the extent possible under law,
    <a rel="dct:publisher"
-      href="https://cc0.snoot.club">
+      href="{{collection.copyright_holder.website}}">
       <span property="dct:title">
-	      {{collection.copyright_holder.legal_name}}
-      </span>
+	      {{collection.copyright_holder.legal_name}}</span>
    </a>
    has waived all copyright and related or neighboring rights to
 
@@ -40,8 +40,8 @@
    This work is published from:
    <span property="vcard:Country"
 	 datatype="dct:ISO3166"
-	 content="{{collection.country_code}}"
-	 about="{{collection.country}}">
-	 {{collection.country}}
+	 content="{{collection.copyright_holder.country_code or 'GB'}}"
+	 about="{{collection.copyright_holder.country or 'United Kingdom'}}">
+	 {{collection.country or 'United Kingdom'}}
    </span>.
-<hr>
+</article>

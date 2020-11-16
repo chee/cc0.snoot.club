@@ -12,7 +12,9 @@
 {% endif %}
 {% if current_user.is_authenticated %}
 	<p class="hello">
-		hi, <span class="hello_name">{{current_user.legal_name}}</span>!
+	    hi, <a href="/{{current_user.username}}" class="hello_name">
+	    {{current_user.legal_name}}
+	    </a>!
 	</p>
 {% endif %}
 <nav>
