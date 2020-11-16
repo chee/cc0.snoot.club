@@ -4,7 +4,7 @@
 	"main": "index.js",
 	"scripts": {
 		"build": "pip3 install -r requirements.txt",
-		"start": "uwsgi -s sock --manage-script-name --mount /cc0=cc0:app",
+		"start": "uwsgi --ini cc0.ini",
 		"dev": "flask run"
 	},
 	"author": "cc0 <cc0@snoot.club>",
