@@ -27,8 +27,13 @@
 		<meta property="og:image:alt" content="cc0 logo">
 	{% endif %}
 	<meta name="author" content="{{copyright_holder.legal_name}}">
-	<meta name="description" content="｢{{piece.name}}｣ — {{piece.description}}">
-	<meta name="twitter:title" content="{{piece.name}} — {{piece.description}}">
+	<meta name="description" content="{{piece.description}}">
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@_publicdump">
+	<meta name="twitter:title" content="{{piece.name}}">
+	<meta name="twitter:description" content="{{piece.description}}">
+	<meta name="twitter:image" content="{{piece.url if piece.type.startswith("image/") else "https://cc0.snoot.club/static/cc0.png")}}">
+
 {% endblock %}
 {% block content %}
 	{% include '_piece.html' %}

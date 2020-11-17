@@ -159,6 +159,7 @@ def piece(username, collection_slug, piece_slug):
         if piece is None:
                 return render_404()
         return render_template("piece.html",
+                               title=piece.name,
                                copyright_holder=ch,
                                collection=collection,
                                piece=piece)
