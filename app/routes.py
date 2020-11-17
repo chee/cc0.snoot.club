@@ -186,7 +186,7 @@ def new_piece(username, slug):
         form = PieceForm()
         if form.validate_on_submit():
                 piece_slug = slugify(form.name.data)
-                existing = Piece.query.filter_by(slug=slug).first()
+                existing = Piece.query.filter_by(slug=piece_slug).first()
                 if existing is not None:
                         flash(f"that name would need the path {username}/{slug}/{piece_slug}, which is taken")
                         return redirect(url_for('new_piece',
