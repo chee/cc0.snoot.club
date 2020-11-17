@@ -173,16 +173,16 @@ def piece_json(username, collection_slug, piece_slug):
         ))
 
 @login_required
-@app.route('/<username>/<category_slug>/new', methods=['GET', 'POST'])
-@app.route('/<username>/<category_slug>/new/', methods=['GET', 'POST'])
-def new_piece(username, category_slug):
+@app.route('/<username>/<collection_slug>/new', methods=['GET', 'POST'])
+@app.route('/<username>/<collection_slug>/new/', methods=['GET', 'POST'])
+def new_piece(username, collection_slug):
         ch = CopyrightHolder.query.filter_by(username=username).first()
         if ch is None:
                 return render_404()
         if current_user.id != ch.id:
                 flash("hey, that's not yours")
                 return redirect(url_for('index'))
-        collection = Collection.query.filter_by(slug=category_slug).first()
+        collection = Collection.query.filter_by(slug=collection_slug).first()
         if collection is None:
                 return render_404()
         form = PieceForm()
@@ -190,14 +190,14 @@ def new_piece(username, category_slug):
                 piece_slug = slugify(form.name.data)
                 existing = Piece.query.filter_by(slug=piece_slug).first()
                 if existing is not None:
-                        flash(f"that name would need the path {username}/{category_slug}/{piece_slug}, which is taken")
+                        flash(f"that name would need the path {username}/{collection_slug}/{piece_slug}, which is taken")
                         return redirect(url_for('new_piece',
                                                 username=username,
-                                                slug=category_slug))
+                                                collection_slug=collection_slug))
                 file = form.file.data
                 url = get_url_for(file,
                                   username=username,
-                                  collection_slug=category_slug,
+                                  collection_slug=collection_slug,
                                   piece_slug=piece_slug)
                 type = get_type_for(file)
                 piece = Piece(name=form.name.data,
@@ -213,7 +213,7 @@ def new_piece(username, category_slug):
                 flash(f"{piece.name} created")
                 return redirect(url_for('collection',
                                         username=username,
-                                        slug=category_slug))
+                                        slug=collection_slug))
         return render_template('new_piece.html',
                                title=f"add to '{collection.name}'",
                                form=form)
