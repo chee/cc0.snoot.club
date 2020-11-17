@@ -26,6 +26,18 @@ class CopyrightHolder(UserMixin, db.Model):
 		return check_password_hash(self.password_hash, password)
 	def is_admin(self):
 		return self.id == 1
+	def serialize(self, collections=False, pieces=False):
+		return {
+			'id': self.id,
+			'username': self.username,
+			'legal_name': self.legal_name,
+			'email': self.email,
+			'website': self.website,
+			'collections': list(map(
+				lambda c : c.serialize(copyright_holder=False, pieces=pieces) if collections else c.id,
+				self.collections.all()
+			))
+		}
 
 class Collection(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -36,6 +48,18 @@ class Collection(db.Model):
 	pieces = db.relationship('Piece', backref='collection', lazy='dynamic')
 	def __repr__(self):
 		return f'<Collection {self.name}>'
+	def serialize(self, copyright_holder=False, pieces=False):
+		return {
+			'id': self.id,
+			'name': self.name,
+			'description': self.description,
+			'slug': self.slug,
+			'copyright_holder': self.copyright_holder.serialize(collections=False, pieces=False) if copyright_holder else self.copyright_holder_id,
+			'pieces': list(map(
+				lambda c : c.serialize(copyright_holder=False, collection=False) if pieces else c.id,
+				self.pieces.all()
+			))
+		}
 
 class Piece(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
@@ -48,3 +72,14 @@ class Piece(db.Model):
 	collection_id = db.Column(db.Integer, db.ForeignKey('collection.id'))
 	def __repr__(self):
 		return f'<Piece {self.name}>'
+	def serialize(self, copyright_holder=False, collection=False):
+		return {
+			'id': self.id,
+			'name': self.name,
+			'description': self.description,
+			'slug': self.slug,
+			'url': self.url,
+			'timestamp': str(self.timestamp),
+			'copyright_holder': self.collection.copyright_holder.serialze() if copyright_holder else self.collection_id,
+			'collection': self.collection.serialize() if collection else self.collection_id
+		}
