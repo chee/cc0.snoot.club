@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "main": "index.js",
     "scripts": {
-	"build": "pip3 install -r requirements.txt",
+	"build": "source ./venv/bin/activate; pip3 install -r requirements.txt",
 	"start": "source ./venv/bin/activate; uwsgi --ini cc0.ini",
 	"dev": "flask run"
     },
