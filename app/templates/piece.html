@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block head %}
-	<meta property="og:title" content="title">
+	<meta property="og:title" content="{{piece.name}}">
+	<meta property="og:description" content="{{piece.description}}">
 	<meta property="og:url" content="https://cc0.snoot.club/{{url_for('piece', username=copyright_holder.username, collection_slug=collection.slug, piece_slug=piece.slug)}}">
 	{% if piece.type.startswith("audio/") %}
 		<meta property="og:type" content="audio">
