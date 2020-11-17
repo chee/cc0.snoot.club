@@ -19,6 +19,10 @@ def index():
         return render_template("index.html",
                                collections=Collection.query.all())
 
+@app.route('/favicon.ico')
+def favicon_ico():
+        return redirect("/static/favicon.ico")
+
 @app.route('/.json')
 def index_json():
         s = lambda thing : thing.serialize()
@@ -154,7 +158,7 @@ def piece(username, collection_slug, piece_slug):
         piece = collection.pieces.filter_by(slug=piece_slug).first()
         if piece is None:
                 return render_404()
-        return render_template("_piece.html",
+        return render_template("piece.html",
                                copyright_holder=ch,
                                collection=collection,
                                piece=piece)

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block head %}
+	<meta property="og:title" content="title">
+	<meta property="og:url" content="https://cc0.snoot.club/{{url_for('piece', username=copyright_holder.username, collection_slug=collection.slug, piece_slug=piece.slug)}}">
+	{% if piece.type.startswith("audio/") %}
+		<meta property="og:type" content="audio">
+		<meta property="og:audio" content="{{piece.url}}">
+		<meta property="og:audio:title" content="" />
+		<meta property="og:audio:artist" content="{{copyright_holder.legal_name}}" />
+		<meta property="og:audio:type" content="{{piece.type}}" />
+		<meta property="og:image" content="https://cc0.snoot.club/static/cc0.png" />
+		<meta property="og:image:alt" content="cc0 logo">
+	{% elif piece.type.startswith("image/") %}
+		<meta property="og:type" content="audio">
+		<meta property="og:image" content="{{piece.url}}">
+		<meta property="og:image:secure_url" content="{{piece.url}}">
+		<meta property="og:image:type" content="{{piece.type}}">
+		<meta property="og:image:alt" content="{{piece.description}}">
+	{% elif piece.type.startswith("video/") %}
+		<meta property="og:type" content="video">
+		<meta property="og:video" content="{{piece.url}}">
+		<meta property="og:video:title" content="" />
+		<meta property="og:video:artist" content="{{copyright_holder.legal_name}}" />
+		<meta property="og:video:type" content="{{piece.type}}" />
+		<meta property="og:image" content="https://cc0.snoot.club/static/cc0.png" />
+		<meta property="og:image:alt" content="cc0 logo">
+	{% endif %}
+	<meta name="author" content="{{copyright_holder.legal_name}}">
+	<meta name="description" content="｢{{piece.name}}｣ — {{piece.description}}">
+	<meta name="twitter:title" content="{{piece.name}} — {{piece.description}}">
+{% endblock %}
+{% block content %}
+	{% include '_piece.html' %}
+{% endblock %}
