@@ -2,10 +2,7 @@
 <meta charset="utf-8">
 <link rel="stylesheet" href="/static/style.css">
 {% block head %}{% endblock %}
-{% if collection %}
-	<title>{{collection.name}} — public dump</title>
-	<h1>{{collection.name}}</h1>
-{% elif title %}
+{% if title %}
 	<title>{{title}} — public dump</title>
 	<h1>{{title}}</h1>
 {% else %}

@@ -12,7 +12,7 @@ def render_json(thing):
         return Response(stringify_json(thing), mimetype="application/json")
 
 def render_404(thing=""):
-         return Response(f"404 {thing} not found", status=404)
+        return Response(f"404 {thing} not found", status=404)
 
 @app.route('/')
 def index():
@@ -133,6 +133,7 @@ def collection(username, slug):
         if collection is None:
                 return render_404("collection")
         return render_template("collection.html",
+                               title=collection.name,
                                copyright_holder=ch,
                                collection=collection)
 
