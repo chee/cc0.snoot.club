@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block nav %}
 	{% if current_user.is_authenticated and current_user.id == copyright_holder.id %}
-		<a href="{{url_for('new_piece', username=current_user.username, slug=collection.slug)}}">
+		<a href="{{url_for('new_piece', username=current_user.username, collection_slug=collection.slug)}}">
 			new piece
 		</a>
 	{% endif %}
