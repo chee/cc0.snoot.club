@@ -1,0 +1,8 @@
+app/static/chee-parts-of-songs-easy-clap-some-trop.flac filter=lfs diff=lfs merge=lfs -text
+app/static/chee-parts-of-songs-ghost-chuckers-ghost-chuckers.flac filter=lfs diff=lfs merge=lfs -text
+app/static/chee-parts-of-songs-ghost-chuckers-op-1-project-ghost-chuckers.zip filter=lfs diff=lfs merge=lfs -text
+app/static/favicon.ico filter=lfs diff=lfs merge=lfs -text
+app/static/style.css filter=lfs diff=lfs merge=lfs -text
+app/static/abe-art-figure-on-squares-tttttt.jpg filter=lfs diff=lfs merge=lfs -text
+app/static/cc0.png filter=lfs diff=lfs merge=lfs -text
+app/static/chee-parts-of-songs-easy-clacla-some-trop.flac filter=lfs diff=lfs merge=lfs -text
